@@ -18,6 +18,7 @@ func main() {
 	}
 
 	userQuestion := flag.String("question", "", "The question to answer about the lightbulbs")
+	debug := flag.Bool("debug", false, "Enable debug mode")
 	flag.Parse()
 	if *userQuestion == "" {
 		fmt.Println("question flag is required")
@@ -40,6 +41,14 @@ func main() {
 	if err != nil {
 		fmt.Println(fmt.Errorf("could not convert question to query: %w", err))
 		os.Exit(1)
+	}
+
+	if *debug {
+		fmt.Println("Query:")
+		d, _ := json.MarshalIndent(q, "", "  ")
+		if err == nil {
+			fmt.Println(string(d))
+		}
 	}
 
 	var dbRes string
@@ -75,6 +84,11 @@ func main() {
 	default:
 		fmt.Println(fmt.Errorf("unexpected query type: %s", q.Type))
 		os.Exit(1)
+	}
+
+	if *debug {
+		fmt.Println("Database Result:")
+		fmt.Println(dbRes)
 	}
 
 	answer, err := openaiClient.AnswerQuestion(*userQuestion, dbRes)
