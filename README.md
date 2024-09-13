@@ -35,7 +35,6 @@ go run ./cmd/rag -question "Welche Leuchte hat SCIP Nummer dd2ddf15-037b-4473-81
 go run ./cmd/rag -question "Gebe mir alle Leuchtmittel mit mindestens 1500W und einer Lebensdauer von mehr als 3000 Stunden?"
 go run ./cmd/rag -question "Welche Leuchte hat die Erzeugnissnummer 4008321299963?"
 go run ./cmd/rag -question "Wie viel wiegt XBO 4000 W/HS XL OFR?"
-go run ./cmd/rag -question "Welche Leuchte hat die höchste Lebensdauer?"
 ```
 
 ## Limitations
