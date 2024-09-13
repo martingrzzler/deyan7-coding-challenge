@@ -12,7 +12,7 @@
 1. Recreate the dataset (optional) `data.jsonl`
 ```bash
 export OPENAI_API_KEY=<your_openai_api_key>
-python3 -m venv venv
+python3 -m venv ./cmd/preprocess/venv
 source ./cmd/preprocess/venv/bin/activate
 pip install -r ./cmd/preprocess/requirements.txt
 python ./cmd/preprocess/main.py
@@ -31,5 +31,14 @@ go run ./cmd/insert/main.go -input ./dataset.jsonl -migrate
 4. Ask a question
 ```bash
 export OPENAI_API_KEY=<your_openai_api_key>
-go run ./cmd/rag -question "Welche Leuchte hat SCIP Nummer dd2ddf15-037b-4473-8156-97498e721fb3?
+go run ./cmd/rag -question "Welche Leuchte hat SCIP Nummer dd2ddf15-037b-4473-8156-97498e721fb3?"
+go run ./cmd/rag -question "Gebe mir alle Leuchtmittel mit mindestens 1500W und einer Lebensdauer von mehr als 3000 Stunden?"
+go run ./cmd/rag -question "Welche Leuchte hat die Erzeugnissnummer 4008321299963?"
+go run ./cmd/rag -question "Wie viel wiegt XBO 4000 W/HS XL OFR?"
+go run ./cmd/rag -question "Welche Leuchte hat die höchste Lebensdauer?"
 ```
+
+## Limitations
+
+This RAG pipeline relies on a api that queries the database. It only supports queries of one or more rows filtered by a WHERE clause (combined with AND if multiple).
+Therefore questions like "Welche Leuchte hat die höchste Lebensdauer?" can't be answered yet. This feature can be added by extending the api.
