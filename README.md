@@ -42,4 +42,5 @@ Add -debug to see more information about the query.
 ## Limitations
 
 This RAG pipeline relies on a api that queries the database. It only supports queries of one or more rows filtered by a WHERE clause (combined with AND if multiple).
-Therefore questions like "Welche Leuchte hat die höchste Lebensdauer?" can't be answered yet. This feature can be added by extending the api.
+Therefore questions like "Welche Leuchte hat die höchste Lebensdauer?" can't be answered yet. This feature can be added by extending the api. 
+In contrast with vector databases these questions that require aggregate functions it would be much more unreliable maybe even impossible. (one of the reasons I choose a relational database).
